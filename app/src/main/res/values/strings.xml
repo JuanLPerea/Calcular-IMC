@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CalculoIMC</string>
+    <string name="obeso">OBESO</string>
+    <string name="sobrepeso">SOBREPESO</string>
+    <string name="ideal">IDEAL</string>
+    <string name="delgado">DELGADO</string>
+    <string name="desnutrido">DESNUTRIDO</string>
+    <string name="introaltura">Introduce tu altura:</string>
+    <string name="intropeso">Introduce tu peso:</string>
+    <string name="calculoIMC">Cálculo Indice de Masa Corporal</string>
+    <string name="complexion">Complexión:</string>
+    <string name="tu_imc_es">Tu IMC es:</string>
+</resources>

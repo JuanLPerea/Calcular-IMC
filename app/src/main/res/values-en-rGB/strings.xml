@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI Calculate</string>
+    <string name="calculoIMC">Body Mass Index Calc</string>
+    <string name="complexion">Complexion:</string>
+    <string name="delgado">SLIM</string>
+    <string name="desnutrido">UNDERNOURISHED</string>
+    <string name="ideal">IDEAL</string>
+    <string name="introaltura">Select your height:</string>
+    <string name="intropeso">Select your weight:</string>
+    <string name="obeso">OBESE</string>
+    <string name="sobrepeso">OVERWEIGHT</string>
+    <string name="tu_imc_es">Your BMI is:</string>
+</resources>
