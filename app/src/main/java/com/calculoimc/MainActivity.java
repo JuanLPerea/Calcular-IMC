@@ -1,10 +1,17 @@
 package com.calculoimc;
 
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imagen;
     private NumberPicker alturaPK;
     private NumberPicker pesoPK;
+    private static final String URL_BUSCADOR = "https://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal";
 
 
     @Override
@@ -29,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(saquito);
         setContentView(R.layout.activity_main);
 
+
+        // Ocultamos el teclado virtual para ver la pantalla completa
+        hideKeyboard(this);
 
         //   alturaET = findViewById(R.id.alturaET);
         //    pesoET = findViewById(R.id.pesoET);
@@ -139,14 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
         complexionTV.setText(complexion);
 
-        // Ocultamos el teclado virtual para ver la pantalla completa
-        //        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
-        //        inputMethodManager.hideSoftInputFromWindow(pesoET.getWindowToken(), 0);
-        //        inputMethodManager.hideSoftInputFromWindow(alturaET.getWindowToken(), 0);
 
-        //    } else {
-        //        Toast.makeText(this, "Falta algún dato, por favor rellena el peso y la altura...", Toast.LENGTH_LONG).show();
-        //    }
 
 
     }
@@ -175,4 +179,44 @@ public class MainActivity extends AppCompatActivity {
         Log.d("LOGIMC", "Saved: " + alturaPK.getValue() + " " + pesoPK.getValue());
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_opciones, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menu_info:
+
+                //  Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(URL_BUSCADOR));
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal"));
+                startActivity(intent);
+
+                /*
+                // AQUI SE ASEGURA QUE HAYA UNA ACTIVIDAD CANDIDATA PARA LA ACCION QUE QUIERA REALIZAR
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                */
+
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }
